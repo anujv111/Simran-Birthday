@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+.App {
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* Netflix red brand */
+.netflix-red { color: #e50914; }
+.bg-netflix-red { background-color: #e50914; }
+
+/* Row scroll */
+.row-scroll {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding: 20px 4%;
+}
+.row-scroll::-webkit-scrollbar { display: none; }
+
+.row-card {
+  flex: 0 0 auto;
+  width: 260px;
+  aspect-ratio: 16/9;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform 300ms ease, box-shadow 300ms ease;
+  background: #141414;
+}
+.row-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 400ms ease;
+}
+.row-card:hover {
+  transform: scale(1.15);
+  z-index: 20;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+}
+.row-card:hover .card-info { opacity: 1; transform: translateY(0); }
+
+.card-info {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: 10px 12px;
+  background: linear-gradient(0deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0) 100%);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  height: 85vh;
+  min-height: 560px;
+  width: 100%;
+  overflow: hidden;
+}
+.hero-img {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center 20%;
+  background-color: #000;
+  transform: scale(1.02);
+}
+.hero-fade {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.75) 30%, rgba(0,0,0,0.35) 55%, rgba(0,0,0,0) 80%),
+    linear-gradient(0deg, #000 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0) 60%);
+}
+
+.hero-content { position: relative; z-index: 5; padding: 12% 4% 0 4%; max-width: 720px; }
+
+.title-bebas { font-family: 'Bebas Neue', sans-serif; letter-spacing: 1px; }
+
+.btn-play {
+  background: #fff; color: #000; border: none; padding: 10px 22px; border-radius: 4px;
+  font-weight: 700; display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+  transition: background 200ms ease;
+}
+.btn-play:hover { background: rgba(255,255,255,0.8); }
+
+.btn-info {
+  background: rgba(109,109,110,0.7); color: #fff; border: none; padding: 10px 22px; border-radius: 4px;
+  font-weight: 700; display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+  transition: background 200ms ease;
+}
+.btn-info:hover { background: rgba(109,109,110,0.5); }
+
+/* Navbar */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  padding: 16px 4%;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background 300ms ease;
+}
+.nav-scrolled { background: #0b0b0b; box-shadow: 0 2px 12px rgba(0,0,0,0.5); }
+.nav-links { display: flex; gap: 20px; align-items: center; }
+.nav-links a { color: #e5e5e5; font-size: 14px; text-decoration: none; transition: color 200ms; }
+.nav-links a:hover { color: #b3b3b3; }
+.nav-links a.active { font-weight: 600; color: #fff; }
+
+.logo { color: #e50914; font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 2px; font-weight: 700; }
+
+/* Profile page */
+.profile-page { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #000; }
+
+.profile-card { display: flex; flex-direction: column; align-items: center; gap: 12px; cursor: pointer; }
+.profile-avatar {
+  width: 160px; height: 160px; border-radius: 6px; overflow: hidden;
+  border: 3px solid transparent; transition: border-color 200ms ease, transform 200ms ease;
+  background: #141414;
+}
+.profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.profile-card:hover .profile-avatar { border-color: #fff; transform: scale(1.03); }
+.profile-card:hover .profile-name { color: #fff; }
+.profile-name { color: #808080; font-size: 18px; transition: color 200ms ease; }
+
+/* Modal */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 100; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.modal { background: #181818; width: 100%; max-width: 880px; border-radius: 8px; overflow: hidden; max-height: 90vh; overflow-y: auto; }
+.modal-hero { position: relative; height: 480px; }
+.modal-hero img { width: 100%; height: 100%; object-fit: cover; }
+.modal-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(0deg, #181818 5%, rgba(24,24,24,0) 50%); }
+
+/* Dashboard */
+.dash-tile {
+  border: 1px dashed #333; border-radius: 8px; padding: 40px; text-align: center;
+  background: #0e0e0e; transition: border-color 200ms ease, background 200ms ease;
+}
+.dash-tile:hover { border-color: #e50914; background: #141414; }
+
+/* Fade in */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.fade-in { animation: fadeIn 500ms ease both; }
+
+/* Utility */
+.text-shadow { text-shadow: 2px 4px 8px rgba(0,0,0,0.7); }
+
+/* Selection */
+::selection { background: #e50914; color: #fff; }
